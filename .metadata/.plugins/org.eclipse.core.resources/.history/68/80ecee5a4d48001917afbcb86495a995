@@ -1,0 +1,91 @@
+package com.ppchatcllient.view;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class FriendList extends JFrame implements ActionListener{
+	CardLayout cardLayout;//
+	//NO.1
+	//bei
+	JPanel myhaoyou;
+	JButton haoyou;
+	
+	//nan
+	JPanel moshangrenmianban;
+	JButton moshangren;
+	JButton heimingdan;
+	
+	
+	//NO.2
+	//bei
+	JPanel mymoshangren;
+	JButton moshangren1;
+	JButton haoyou1;
+	//nan
+	JPanel moshangrenmianban1;
+	JButton heimingdan1;
+	public FriendList(){
+		//NO.1被
+		
+		myhaoyou=new JPanel(new BorderLayout());
+		haoyou=new JButton("我的好友");
+		//haoyou.addActionListener(this);//事件监听器
+		myhaoyou.add(haoyou,"North");
+		//NO.1nan
+		moshangrenmianban=new JPanel(new GridLayout(2,1));
+		moshangren=new JButton("我的陌生人");
+		moshangren.addActionListener(this);
+		heimingdan=new JButton("黑名单");
+		moshangrenmianban.add(moshangren);
+		moshangrenmianban.add(heimingdan);
+		myhaoyou.add(moshangrenmianban,"South");
+		//NO.2
+		mymoshangren=new JPanel(new BorderLayout());
+	
+		//bei
+		moshangrenmianban1=new JPanel(new GridLayout(2,1));
+		haoyou1=new JButton("我的好友");
+		haoyou1.addActionListener(this);
+		moshangren1=new JButton("我的陌生人");
+		//moshangren1.addActionListener(this);
+		moshangrenmianban1.add(haoyou1);
+		moshangrenmianban1.add(moshangren1);
+		mymoshangren.add(moshangrenmianban1,"North");
+		//nan
+		heimingdan1=new JButton("黑名单");
+		mymoshangren.add(heimingdan1,"South");
+		
+		
+		cardLayout=new CardLayout();
+		this.setLayout(cardLayout);
+		this.add(myhaoyou,"1");
+		this.add(mymoshangren,"2");
+		this.setSize(240,500);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		
+	}
+
+	public static void main(String[] args) {
+		FriendList friendList=new FriendList();
+		
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		if(arg0.getSource()==moshangren){
+			cardLayout.show(this.getContentPane(),"2");
+		}
+		if(arg0.getSource()==haoyou1){
+			cardLayout.show(this.getContentPane(),"1");
+		}
+		
+	}
+
+}

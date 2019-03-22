@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;clear.gif&apos; to &apos;images&apos;&#x0D;&#x0A;- Original project: &apos;yychatclient&apos;&#x0D;&#x0A;- Destination element: &apos;images&apos;&#x0D;&#x0A;- Original element: &apos;clear.gif&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move file" element1="images/clear.gif" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1552786966294" target="/ppchatcllient/images" units="0" version="1.0"/>
+</session>

@@ -1,0 +1,53 @@
+package com.ppchatcllient.view;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
+
+import javax.swing.*;
+
+public class FriendList extends JFrame{
+	CardLayout cardLayout;//
+	//NO.1
+	//bei
+	JPanel myhaoyou;
+	JButton haoyou;
+	
+	//nan
+	JPanel moshangrenmianban;
+	JButton moshangren;
+	JButton heimingdan;
+	
+	
+	//NO.2
+	JPanel mymoshangren;
+	public FriendList(){
+		//NO.1被
+		
+		myhaoyou=new JPanel(new BorderLayout());
+		haoyou=new JButton("我的好友");
+		myhaoyou.add(haoyou,"North");
+		//NO.1nan
+		moshangrenmianban=new JPanel(new GridLayout());
+		moshangren=new JButton("我的陌生人");
+		heimingdan=new JButton("黑名单");
+		moshangrenmianban.add(moshangren);
+		moshangrenmianban.add(heimingdan);
+		//myhaoyou.add(moshangrenmianban,"Sonth");
+		
+		
+	
+		this.add(myhaoyou);
+		this.setSize(240,500);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		
+	}
+
+	public static void main(String[] args) {
+		FriendList friendList=new FriendList();
+		
+
+	}
+
+}

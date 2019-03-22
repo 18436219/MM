@@ -1,0 +1,5 @@
+package com.ppchatlient.control;
+
+public class ClientConnect {
+
+}

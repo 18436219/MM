@@ -1,0 +1,10 @@
+package com.qqchatserver.controller;
+
+public class StertServer {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

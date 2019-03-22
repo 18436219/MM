@@ -1,0 +1,12 @@
+package com.ppchatlient.control;
+
+import java.net.Socket;
+
+
+
+public class ClientConnect {
+	Socket 
+	public ClientConnect(){
+		s= new Socket("127.0.0.1",3456);//本机地址，回测地址
+	}
+}
