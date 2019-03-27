@@ -1,0 +1,10 @@
+package com.difu.view;
+
+public class DiFu {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

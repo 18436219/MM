@@ -116,7 +116,8 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 		if(arg0.getClickCount()==2){
 			JLabel jlb1=(JLabel)arg0.getSource();
 			String receiver=jlb1.getText();
-			new friendChat(this.userName,receiver);
+			//new friendChat(this.userName,receiver);
+			new Thread(new friendChat(this.userName,receiver)).start();
 		}
 		
 	}

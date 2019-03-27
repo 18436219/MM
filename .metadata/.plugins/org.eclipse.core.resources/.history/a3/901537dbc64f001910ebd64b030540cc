@@ -1,0 +1,9 @@
+package com.difu.view;
+import java.awt.*;
+import javax.swing.*;
+public class DiFu {
+	
+	　　　 public  void main(String args[]){
+		 
+	　　　 }
+	　　 

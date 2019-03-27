@@ -1,0 +1,49 @@
+package com.qqchatserver.controller;
+
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import com.yychat.model.Message;
+import com.yychat.model.user;
+
+public class StertServer {
+	String userName;
+	String passWord;
+	ServerSocket ss;
+	public StertServer(){
+	try {//捕获异常
+		//double 
+		ss= new ServerSocket(3456);
+		System.out.println("服务器已经启动，监听3456端口");
+		Socket s= ss.accept();//接受连接请求
+		System.out .println("连接成功:"+s);
+		
+		//接受uear
+		ObjectInputStream oos=new ObjectInputStream (s.getInputStream());
+		 user user=(user)oos.readObject();
+		 this.userName=user.getUserName();
+		 this.passWord=user.getPassName();
+		 System.out.println(userName);
+		 System.out.println(passWord);
+		 Message mess=new Message();
+		 mess.setSender("Senver");
+		 mess.setReceiver(passWord);
+		 //密码验证
+		 if(passWord.equals("123456")){//对象比较
+			 mess.setMessageType("1");//1为验证通过
+		 }else{
+			 mess.setMessageType("0");//0为验证 不通过
+		 }
+		 ObjectOutputStream ois=new ObjectOutputStream(s.getOutputStream());
+		 ois.writeObject(mess);
+	} catch (IOException e) {
+		
+		e.printStackTrace();//处理异常
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
+	}
+}

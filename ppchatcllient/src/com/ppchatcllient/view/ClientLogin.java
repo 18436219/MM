@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import com.ppchatlient.controller.ClientConnect;
+import com.yychat.model.Message;
 import com.yychat.model.user;
 
 public class ClientLogin extends JFrame implements ActionListener{//类名：ClientLogin,继承
@@ -87,12 +88,16 @@ public class ClientLogin extends JFrame implements ActionListener{//类名：Client
 			user.setUserName(userName);
 			user.setPassName(PassWord);
 			
-			new ClientConnect().loginValidate(user);
-			
-			new FriendList(userName);
-			
-			this.dispose();}
+			Message mess=new ClientConnect().loginValidate(user);
+			if(mess.getMessageType().equals(Message.message_LoginSuccess)){
+				new FriendList(userName);
+				this.dispose();
+			}else
+			{
+				JOptionPane.showMessageDialog(this,"密码错误");
+			}
 		}
 	}
+}
 	
 

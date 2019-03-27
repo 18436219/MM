@@ -1,0 +1,25 @@
+package com.difu.view;
+
+import javax.swing.*;
+
+
+public class DiFu extends JFrame{
+	
+	JLabel jb1;
+	
+	public DiFu(){
+		jb1=new JLabel(new ImageIcon("tupian/ting.jpg"));
+		this.add(jb1,"North");
+		
+		
+		this.setSize(340,300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		DiFu difu=new DiFu();
+	}
+
+}
