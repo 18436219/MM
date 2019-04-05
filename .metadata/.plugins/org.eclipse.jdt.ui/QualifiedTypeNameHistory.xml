@@ -20,5 +20,13 @@
 <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.awt.Graphics"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
+<fullyQualifiedTypeName name="java.awt.Font"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
+<fullyQualifiedTypeName name="java.awt.Container"/>
+<fullyQualifiedTypeName name="com.ppchatcllient.view.FriendList"/>
+<fullyQualifiedTypeName name="com.ppchatcllient.view.friendChat1"/>
+<fullyQualifiedTypeName name="com.ppchatcllient.view.FriendChat1"/>
 </qualifiedTypeNameHistroy>

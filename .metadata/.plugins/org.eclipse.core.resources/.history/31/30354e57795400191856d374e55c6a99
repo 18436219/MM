@@ -1,0 +1,19 @@
+package com.difu.view;
+
+import javax.swing.JFrame;
+
+public class difulogin extends JFrame{
+	
+	
+	
+	public difulogin(){
+		setLayout(null);
+		setBounds(0,0,240,350);
+		
+	}
+
+	public static void main(String[] args) {
+	difulogin DiFulogin=new difulogin();
+	}
+
+}

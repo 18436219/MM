@@ -34,8 +34,8 @@ public class Chatserver extends JFrame implements ActionListener{
 
 	}
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		StertServer stertserver=new StertServer();
+	public void actionPerformed(ActionEvent e) {
+		new StertServer();
 
 		
 	}

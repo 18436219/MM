@@ -1,4 +1,4 @@
-package com.ppchatcllient.view;
+ package com.ppchatcllient.view;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -8,11 +8,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.Socket;
+import java.util.HashMap;
 
 import javax.swing.*;
 
 public class FriendList extends JFrame implements ActionListener,MouseListener{
-	CardLayout cardLayout;//
+	public static HashMap hmfriendChat1=new HashMap<String,FriendChat1>();//¼üÖµ¶Ô
+	CardLayout cardLayout;
 	//NO.1
 	//bei
 	JPanel myhaoyou;
@@ -116,8 +119,9 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 		if(arg0.getClickCount()==2){
 			JLabel jlb1=(JLabel)arg0.getSource();
 			String receiver=jlb1.getText();
-			//new friendChat(this.userName,receiver);
-			new Thread(new friendChat(this.userName,receiver)).start();
+			FriendChat1 friendChat1=new FriendChat1(this.userName,receiver);
+			// new Thread(new friendChat1(this.userName,receiver)).start();
+			hmfriendChat1.put(userName+"to"+receiver,friendChat1);
 		}
 		
 	}

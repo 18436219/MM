@@ -1,4 +1,4 @@
-package com.ppchatcllient.view;
+/*package com.ppchatcllient.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -69,7 +69,7 @@ public class friendChat extends JFrame implements ActionListener,Runnable{
 				String showMessage=mess.getSender()+"对"+mess.getReceiver()+"说"+mess.getClass();
 				System.out.println(showMessage);
 				
-				jta.append(showMessage+"\r\n");*/
+				jta.append(showMessage+"\r\n");
 			} catch (IOException e) {
 				
 				e.printStackTrace();
@@ -78,10 +78,12 @@ public class friendChat extends JFrame implements ActionListener,Runnable{
 		
 		
 	}
-	@Override
+	/*@Override
 	public void run() {
 		ObjectInputStream ois;
-		while(true){try {
+		while(true){
+			try {
+			
 			ois = new ObjectInputStream(ClientConnect.s.getInputStream());
 			Message mess=(Message)ois.readObject();
 			String showMessage=mess.getSender()+"对"+mess.getReceiver()+"说"+mess.getContent();
@@ -99,3 +101,4 @@ public class friendChat extends JFrame implements ActionListener,Runnable{
 	}
 
 }
+*/

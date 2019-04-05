@@ -6,7 +6,7 @@ import java.net.Socket;
 
 import java.util.HashMap;
 
-//import com.ppchatcllient.view.ServerReceiverTh;
+
 import com.yychat.model.Message;
 import com.yychat.model.user;
 
@@ -47,7 +47,7 @@ public class StertServer {
 			//½ÓÊÜÁÄÌì
 		 if(passWord.equals("123456")){
 			 hmSocket.put(userName, s);
-			 new ServerReceiverThread(s).start();//jiuxu 
+			 new ServerReceiverThread(s).start();
 		 }
 			
 			

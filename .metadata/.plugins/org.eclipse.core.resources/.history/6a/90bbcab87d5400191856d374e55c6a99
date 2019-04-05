@@ -1,0 +1,29 @@
+package com.difu.view;
+
+import java.awt.FlowLayout;
+
+import javax.swing.*;
+
+public class difulogin extends JFrame{
+	
+	JLabel ja1;
+	JButton jb1;
+	JTextField jc1;
+	
+	public difulogin(){
+		ja1=new JLabel(new ImageIcon("tupian/timg.jpg"));
+		
+	
+		
+		this.setSize(740,350);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(860,300,340,350);
+		this.setLayout(null);
+		this.setVisible(true);
+	}
+
+	public static void main(String[] args) {
+	difulogin DiFulogin=new difulogin();
+	}
+
+}
