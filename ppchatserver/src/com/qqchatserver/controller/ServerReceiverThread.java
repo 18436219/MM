@@ -1,11 +1,15 @@
 package com.qqchatserver.controller;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
+import java.io.*;
+import java.net.*;
+import java.util.Set;
+import java.util.Iterator;
+
+
 
 import javax.swing.JOptionPane;
+
+
 
 import com.yychat.model.Message;
 
@@ -25,10 +29,27 @@ public class ServerReceiverThread extends Thread{
 			ois = new ObjectInputStream(s.getInputStream());
 			mess=(Message)ois.readObject();
 			System.out.println(mess.getSender()+"对"+mess.getReceiver()+"说"+mess.getContent());
-			
+			if(mess.getMessageType().equals(Message.message_Common)){
 			Socket s1=(Socket)StertServer.hmSocket.get(mess.getReceiver());
 			oos=new ObjectOutputStream(s1.getOutputStream());
 			 oos.writeObject(mess);
+			}
+			
+			//第2步：服务器接受到该请求后发送在线好友信息(类型：mess_OnlineFriend)
+			if(mess.getMessageType().equals(Message.message_RequestOnlineFriend)){
+				Set friendSet=StertServer.hmSocket.keySet();
+				Iterator it=friendSet.iterator();
+				String friendName;
+				String friendString=" ";
+				while(it.hasNext()){
+					friendName=(String)it.next();
+					if(friendName.equals(mess.getSender()))
+					   friendString=friendString+friendName+" ";
+					
+				}
+				System.out.println("全部好友的名字"+friendString);
+			
+			}
 		} catch (IOException e) {
 		e.printStackTrace();
 			 

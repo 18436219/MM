@@ -22,7 +22,7 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 	JButton haoyou;
 	//中
 	JScrollPane myfriendJScrollPane;
-	JPanel myfriendlist;
+	JPanel myfriendlistJPanel;
 	static final int FRIEND=51;
 	JLabel[] myfriendJLanel=new JLabel[FRIEND];
 	
@@ -52,13 +52,20 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 		myhaoyou.add(haoyou,"North");
 		//zhong
 	
-		 myfriendlist=new JPanel(new GridLayout(FRIEND-1,1));
+		 myfriendlistJPanel=new JPanel(new GridLayout(FRIEND-1,1));
 		 for(int i=1;i<FRIEND;i++){
 			 myfriendJLanel[i]=new JLabel(i+"",new ImageIcon("images/mm.jpg"),JLabel.LEFT);
+			 myfriendJLanel[i].setEnabled(false);//未激活所有图标
+			 //激活自己
+			 /*if(Integer.parseInt(userName)==i)
+				 myfriendJLanel[i].setEnabled(true);*/
 			 myfriendJLanel[i].addMouseListener(this);//鼠标监听器
-			 myfriendlist.add(myfriendJLanel[i]);
+			 myfriendlistJPanel.add(myfriendJLanel[i]);
+			 
 		 }
-		 myfriendJScrollPane=new JScrollPane(myfriendlist);
+		//激活自己
+		 myfriendJLanel[Integer.parseInt(userName)].setEnabled(true);
+		 myfriendJScrollPane=new JScrollPane(myfriendlistJPanel);
 		 myhaoyou.add(myfriendJScrollPane);
 		//NO.1nan
 		moshangrenmianban=new JPanel(new GridLayout(2,1));
@@ -119,9 +126,18 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 		if(arg0.getClickCount()==2){
 			JLabel jlb1=(JLabel)arg0.getSource();
 			String receiver=jlb1.getText();
-			FriendChat1 friendChat1=new FriendChat1(this.userName,receiver);
+			//FriendChat1 friendChat1=new FriendChat1(this.userName,receiver);
 			// new Thread(new friendChat1(this.userName,receiver)).start();
-			hmfriendChat1.put(userName+"to"+receiver,friendChat1);
+			FriendChat1 friendChat1=(FriendChat1)hmfriendChat1.get(userName+"to"+receiver);
+			if(friendChat1==null)
+			{
+				friendChat1=new FriendChat1(this.userName,receiver);
+				hmfriendChat1.put(userName+"to"+receiver,friendChat1);
+			}else
+			{
+				friendChat1.setVisible(true);
+			}
+			
 		}
 		
 	}

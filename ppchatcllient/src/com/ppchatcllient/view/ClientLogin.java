@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 import javax.swing.*;
 
@@ -88,9 +91,21 @@ public class ClientLogin extends JFrame implements ActionListener{//¿‡√˚£∫Client
 			user.setUserName(userName);
 			user.setPassName(PassWord);
 			
-			Message mess=new ClientConnect().loginValidate(user);
-			if(mess.getMessageType().equals(Message.message_LoginSuccess)){
+			boolean loginSuccess=new ClientConnect().loginValidate(user);
+			if(loginSuccess){
 				new FriendList(userName);
+				Message mess=new Message();
+				mess.setSender(userName);
+				mess.setReceiver("Server");
+				mess.setMessageType(Message.message_RequestOnlineFriend);
+				
+				Socket s=(Socket)ClientConnect.hmSocket.get(userName);
+				ObjectOutputStream oos;
+				try {
+					oos=new ObjectOutputStream(s.getOutputStream());
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 				this.dispose();
 			}else
 			{

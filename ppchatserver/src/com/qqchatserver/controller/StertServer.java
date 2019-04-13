@@ -1,10 +1,10 @@
 package com.qqchatserver.controller;
 
 import java.io.*;
-import java.net.ServerSocket;
+import java.net.*;
 import java.net.Socket;
 
-import java.util.HashMap;
+import java.util.*;
 
 
 import com.yychat.model.Message;
@@ -48,11 +48,8 @@ public class StertServer {
 		 if(passWord.equals("123456")){
 			 hmSocket.put(userName, s);
 			 new ServerReceiverThread(s).start();
-		 }
-			
-			
+		 }	
 		}
-		
 	} catch (IOException e) {
 		
 		e.printStackTrace();//¥¶¿Ì“Ï≥£

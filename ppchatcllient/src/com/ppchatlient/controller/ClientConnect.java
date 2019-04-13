@@ -23,7 +23,8 @@ public class ClientConnect {
 			e.printStackTrace();
 		}
 	}
-	public Message loginValidate(user user){
+	public boolean  loginValidate(user user){
+		boolean loginSuccess=false;
 		ObjectOutputStream oos;
 		ObjectInputStream ois;
 		Message mess=null;
@@ -33,7 +34,8 @@ public class ClientConnect {
 		
 		ois=new ObjectInputStream(s.getInputStream());
 		 mess=(Message)ois.readObject();
-		 if(mess.getMessageType().equals(Message.message_LoginSuccess)){
+		if(mess.getMessageType().equals(Message.message_LoginSuccess)){
+			loginSuccess=true;
 				System.out.println(user.getUserName()+"µÇÂ½³É¹¦");
 				hmSocket.put(user.getUserName(), s);
 				 new ClientReceiverTiread(s).start();
@@ -43,6 +45,6 @@ public class ClientConnect {
 		
 		e.printStackTrace();
 	}
-	return mess;
+	return loginSuccess;
 	}
 }

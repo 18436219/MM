@@ -23,14 +23,18 @@ public class ClientReceiverTiread extends Thread {
 				Message mess=(Message)ois.readObject();
 				String showMessage=mess.getSender()+"对"+mess.getReceiver()+"说"+mess.getContent();
 				System.out.println(showMessage);
-				
-				//jta.append(showMessage+"\r\n");
-				
-				// 在好友界面上显示聊天信息
-				//1.如何得到聊天信息
-				FriendChat1 friendChat1=(FriendChat1)FriendList.hmfriendChat1.get(mess.getReceiver()+"to"+mess.getSender());
-				//2.再显示信习
-				friendChat1.appendJta(showMessage);
+				if(mess.getMessageType().equals(Message.message_Common)){
+					//jta.append(showMessage+"\r\n");
+					
+					// 在好友界面上显示聊天信息
+					//1.如何得到聊天信息
+					FriendChat1 friendChat1=(FriendChat1)FriendList.hmfriendChat1.get(mess.getReceiver()+"to"+mess.getSender());
+					//2.再显示信习
+					friendChat1.appendJta(showMessage);
+				}
+				//第3步：客户端接受服务器发送来的在线好友信息，然后利用该信息激活在线好友的图标
+				if(mess.getMessageType().equals(Message.message_OnlineFriend)){
+				}
 			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
