@@ -24,7 +24,7 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 	JScrollPane myfriendJScrollPane;
 	JPanel myfriendlistJPanel;
 	static final int FRIEND=51;
-	JLabel[] myfriendJLanel=new JLabel[FRIEND];
+	JLabel[] myfriendJLabel=new JLabel[FRIEND];
 	
 	
 	
@@ -52,19 +52,20 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 		myhaoyou.add(haoyou,"North");
 		//zhong
 	
-		 myfriendlistJPanel=new JPanel(new GridLayout(FRIEND-1,1));
+
+		myfriendlistJPanel=new JPanel(new GridLayout(FRIEND-1,1));
 		 for(int i=1;i<FRIEND;i++){
-			 myfriendJLanel[i]=new JLabel(i+"",new ImageIcon("images/mm.jpg"),JLabel.LEFT);
-			 myfriendJLanel[i].setEnabled(false);//未激活所有图标
+			 myfriendJLabel[i]=new JLabel(i+"",new ImageIcon("images/mm.jpg"),JLabel.LEFT);
+			 myfriendJLabel[i].setEnabled(false);//未激活所有图标
 			 //激活自己
 			 /*if(Integer.parseInt(userName)==i)
 				 myfriendJLanel[i].setEnabled(true);*/
-			 myfriendJLanel[i].addMouseListener(this);//鼠标监听器
-			 myfriendlistJPanel.add(myfriendJLanel[i]);
+			 myfriendJLabel[i].addMouseListener(this);//鼠标监听器
+			 myfriendlistJPanel.add(myfriendJLabel[i]);
 			 
 		 }
 		//激活自己
-		 myfriendJLanel[Integer.parseInt(userName)].setEnabled(true);
+		 myfriendJLabel[Integer.parseInt(userName)].setEnabled(true);
 		 myfriendJScrollPane=new JScrollPane(myfriendlistJPanel);
 		 myhaoyou.add(myfriendJScrollPane);
 		//NO.1nan
@@ -107,7 +108,15 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 	public static void main(String[] args) {
 		//FriendList friendList=new FriendList();
 		
-
+		
+	}
+	public void setEnableFriendIcon(String friendString){
+		//
+		String[] friendName=friendString.split(" ");
+		int count=friendName.length;
+		for(int i=0;i<count;i++){
+			 myfriendJLabel[Integer.parseInt(friendName[i])].setEnabled(true);
+		} 	
 	}
 
 	@Override

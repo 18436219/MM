@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 
 import javax.swing.*;
 
@@ -15,6 +16,7 @@ import com.yychat.model.user;
 
 public class ClientLogin extends JFrame implements ActionListener{//类名：ClientLogin,继承
 
+	public static HashMap hmFriendList =new HashMap<String,FriendList>();
 	//定义北部组件
 	JLabel jlbl1;
 	
@@ -93,16 +95,22 @@ public class ClientLogin extends JFrame implements ActionListener{//类名：Client
 			
 			boolean loginSuccess=new ClientConnect().loginValidate(user);
 			if(loginSuccess){
-				new FriendList(userName);
+				FriendList friendList=new FriendList(userName);
+				hmFriendList.put(userName, friendList);
+				
+				
 				Message mess=new Message();
 				mess.setSender(userName);
 				mess.setReceiver("Server");
 				mess.setMessageType(Message.message_RequestOnlineFriend);
-				
 				Socket s=(Socket)ClientConnect.hmSocket.get(userName);
+				System.out.println("发送"+userName);
+				System.out.println(s);
+				
 				ObjectOutputStream oos;
 				try {
 					oos=new ObjectOutputStream(s.getOutputStream());
+					oos.writeObject(mess);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}

@@ -4,18 +4,20 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+import com.ppchatcllient.view.ClientLogin;
 import com.ppchatcllient.view.FriendChat1;
 import com.ppchatcllient.view.FriendList;
 import com.yychat.model.Message;
 
 public class ClientReceiverTiread extends Thread {
 	
+	ObjectInputStream ois;
 	  private Socket s;
       public ClientReceiverTiread(Socket s){
     	  this.s=s;
       }
 	  public void run() {
-			ObjectInputStream ois;
+			//ObjectInputStream ois;
 			while(true){
 				try {
 				
@@ -34,6 +36,14 @@ public class ClientReceiverTiread extends Thread {
 				}
 				//第3步：客户端接受服务器发送来的在线好友信息，然后利用该信息激活在线好友的图标
 				if(mess.getMessageType().equals(Message.message_OnlineFriend)){
+					System.out.println("在线好友"+mess.getContent());
+					
+					//激活对应图标,首先要拿到好友列表对象
+					
+					FriendList FriendList=(FriendList)ClientLogin.hmFriendList.get(mess.getReceiver());
+					//System.out.println((FriendList)ClientLogin.hmFriendList.get(mess.getReceiver()));
+					FriendList.setEnableFriendIcon(mess.getContent());
+					
 				}
 			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
