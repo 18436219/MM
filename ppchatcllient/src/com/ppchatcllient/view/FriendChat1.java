@@ -53,7 +53,7 @@ public class FriendChat1 extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource()==ji) {
-			jta.append(jtb.getText()+"\r\n");
+			jta.append(jtb.getText()+" \n"+"\r\n");
 			//向服务器发送聊天信息
 			Message mess=new Message();
 			mess.setSender(sender);
@@ -74,6 +74,6 @@ public class FriendChat1 extends JFrame implements ActionListener{
 	}
 
 public void appendJta(String showMessage){
-	jta.append(showMessage+"/r/n");
+	jta.append(showMessage+" \n"+"\r\n");
 }
 }

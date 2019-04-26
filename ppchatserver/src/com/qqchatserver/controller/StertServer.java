@@ -2,10 +2,7 @@ package com.qqchatserver.controller;
 
 import java.io.*;
 import java.net.*;
-import java.net.Socket;
-
 import java.util.*;
-
 
 import com.yychat.model.Message;
 import com.yychat.model.user;
@@ -14,6 +11,7 @@ public class StertServer {
 	 public static HashMap hmSocket=new HashMap<String,Socket>();
 	String userName;
 	Socket s;
+	Message mess;
 	String passWord;
 	ServerSocket ss;
 	public StertServer(){
@@ -33,7 +31,7 @@ public class StertServer {
 		 System.out.println(userName);
 		 System.out.println(passWord);
 		//密码验证
-		 Message mess=new Message();
+		 mess=new Message();
 		 mess.setSender("Senver");
 		 mess.setReceiver(passWord);
 		
@@ -42,10 +40,27 @@ public class StertServer {
 		 }else{
 			 mess.setMessageType(Message.message_LoginFailure);//0为验证 不通过
 		 }
-		 ObjectOutputStream oos=new ObjectOutputStream(s.getOutputStream());
-		 oos.writeObject(mess);
+		 sendMessage(s,mess);
 			//接受聊天
 		 if(passWord.equals("123456")){
+			 //1.在
+			 mess.setMessageType(Message.message_NewOnlineFriend);//发送消息的类型
+			 mess.setSender("Server");
+			 mess.setContent(this.userName);//发送消息的内容
+			 //拿到用户的名字了
+			Set onlineFriendSet=hmSocket.keySet();
+			Iterator it=onlineFriendSet.iterator();
+			
+			String friendName;
+			while(it.hasNext()){
+				friendName=(String)it.next();
+				mess.setReceiver(friendName);
+				//向friendName发送消息
+				Socket s1=(Socket)hmSocket.get(friendName);
+				sendMessage(s1,mess);
+			}
+			
+			 
 			 hmSocket.put(userName, s);
 			 new ServerReceiverThread(s).start();
 		 }	
@@ -58,5 +73,9 @@ public class StertServer {
 		e.printStackTrace();
 	}
 		
+	}
+	private void sendMessage(Socket s,Message mess) throws IOException {
+		ObjectOutputStream oos=new ObjectOutputStream(s.getOutputStream());
+		 oos.writeObject(mess);
 	}
 }

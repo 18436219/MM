@@ -97,15 +97,13 @@ public class ClientLogin extends JFrame implements ActionListener{//ÀàÃû£ºClient
 			if(loginSuccess){
 				FriendList friendList=new FriendList(userName);
 				hmFriendList.put(userName, friendList);
-				
-				
 				Message mess=new Message();
 				mess.setSender(userName);
 				mess.setReceiver("Server");
 				mess.setMessageType(Message.message_RequestOnlineFriend);
 				Socket s=(Socket)ClientConnect.hmSocket.get(userName);
 				System.out.println("·¢ËÍ"+userName);
-				System.out.println(s);
+				//System.out.println(s);
 				
 				ObjectOutputStream oos;
 				try {

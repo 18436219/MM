@@ -38,11 +38,22 @@ public class ClientReceiverTiread extends Thread {
 				if(mess.getMessageType().equals(Message.message_OnlineFriend)){
 					System.out.println("在线好友"+mess.getContent());
 					
-					//激活对应图标,首先要拿到好友列表对象
+					//首先要拿到好友列表对象
 					
-					FriendList FriendList=(FriendList)ClientLogin.hmFriendList.get(mess.getReceiver());
-					//System.out.println((FriendList)ClientLogin.hmFriendList.get(mess.getReceiver()));
-					FriendList.setEnableFriendIcon(mess.getContent());
+					FriendList friendList=(FriendList)ClientLogin.hmFriendList.get(mess.getReceiver());
+//					激活对应图标,
+					
+					friendList.setEnableFriendIcon(mess.getContent());	
+				}
+				
+				if(mess.getMessageType().equals(Message.message_NewOnlineFriend)){
+					System.out.println("新用户上线了，用户名"+mess.getContent());
+					//首先要拿到好友列表对象
+					FriendList  friendList=(FriendList)ClientLogin.hmFriendList.get(mess.getReceiver());
+					System.out.println("FriendList的用户名"+mess.getReceiver());
+//					激活对应图标,
+					
+					friendList.setEnableFriendIcon(mess.getContent());
 					
 				}
 			} catch (IOException | ClassNotFoundException e) {
