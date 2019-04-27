@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="C:\Users\hm\Desktop\在yychat项目中使用数据库" key="org.eclipse.jdt.ui.lastextjar"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="false" key="renameSubpackages"/>
 		<item value="false" key="updateQualifiedNames"/>
@@ -57,6 +58,9 @@
 		<item value="false" key="create_package_info_java"/>
 	</section>
 	<section name="quick_assist_proposal_size">
+	</section>
+	<section name="BuildPathsPropertyPage">
+		<item value="2" key="pageIndex"/>
 	</section>
 	<section name="completion_proposal_size">
 	</section>
