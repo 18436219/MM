@@ -1,0 +1,41 @@
+package com.chatclient.view;
+
+import javax.swing.*;
+
+public class DengLu extends JFrame{
+	JLabel ji1;
+	
+	
+	
+	JPanel ji2;
+	JButton jk1,jk2,jk3;
+	
+	
+	
+	public DengLu(){
+		ji1=new JLabel(new ImageIcon("tupain/tou.gif"));
+		this.add(ji1,"North");
+		
+		
+		
+		
+		ji2=new JPanel();
+		jk1=new JButton(new ImageIcon("tupain/denglu.gif"));
+		jk2=new JButton(new ImageIcon("tupain/zhuce.gif"));
+		jk3=new JButton(new ImageIcon("tupain/quxiao.gif"));
+		ji2.add(jk1);ji2.add(jk2);ji2.add(jk3);
+		this.add(ji2,"South");
+		
+		this.setSize(340,350);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		
+	}
+
+	public static void main(String[] args) {
+		DengLu dengLu=new DengLu();
+
+	}
+
+}

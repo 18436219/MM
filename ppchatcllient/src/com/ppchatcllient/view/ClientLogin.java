@@ -32,6 +32,13 @@ public class ClientLogin extends JFrame implements ActionListener{//类名：Client
 	JTextField jtf1;
 	JPasswordField jpf1;
 	JCheckBox jcb1,jcb2;
+	//定义中部手机号码
+	JLabel ji1,ji2,ji3,ji4,ji5;
+	JCheckBox jk1,jk2;
+	JTextField jl;
+	JPasswordField jl1;
+	
+	
 
 	
 	//创建北部组件
@@ -57,6 +64,21 @@ public class ClientLogin extends JFrame implements ActionListener{//类名：Client
 		jp2.add(jlbl2);jp2.add(jtf1);jp2.add(jb4);
 		jp2.add(jlbl3);jp2.add(jpf1);jp2.add(jlbl4);
 		jp2.add(jcb1);jp2.add(jcb2);jp2.add(jlbl5);
+		//构建手机号码
+		jp3=new JPanel(new GridLayout(3,3));
+		ji1=new JLabel("手机号码",JLabel.CENTER);
+		ji2=new JLabel("手机密码",JLabel.CENTER);
+		ji3=new JLabel("一键找回",JLabel.CENTER);
+		ji4=new JLabel();
+		ji5=new JLabel();
+		jk1=new JCheckBox("记住手机号码");jk2=new JCheckBox("记住密码");
+		jl=new JTextField();jl1=new JPasswordField();
+		
+	    
+		jp3.add(ji1);jp3.add(jl);jp3.add(ji4);
+		jp3.add(ji2);jp3.add(jl1);jp3.add(ji3);
+		jp3.add(jk1);jp3.add(jk2);jp3.add(ji5);
+		
 		jtp1.add(jp2,"YY号码");jtp1.add(jp3,"手机号码");jtp1.add(jp4,"电子邮箱");
 		this.add(jtp1);
 		

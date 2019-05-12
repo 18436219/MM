@@ -16,6 +16,8 @@
 		<list key="textArray">
 		</list>
 	</section>
+	<section name="PreferencesImportWizard">
+	</section>
 	<section name="NewWizardAction">
 		<item value="org.eclipse.ui.wizards.new.file" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
@@ -25,5 +27,7 @@
 			<item value="org.eclipse.jpt.jpa"/>
 			<item value="org.eclipse.jpt.jpa/org.eclipse.jpt.jpa.eclipselink"/>
 		</list>
+	</section>
+	<section name="ImportExportAction">
 	</section>
 </section>

@@ -1,0 +1,88 @@
+package com.qqchatserver.controller;
+
+import java.io.*;
+import java.net.*;
+import java.util.Set;
+import java.util.Iterator;
+
+
+
+
+
+
+import javax.swing.JOptionPane;
+
+
+
+
+
+
+import com.yychat.model.Message;
+
+public class ServerReceiverThread extends Thread{
+	 
+	Socket s;
+	ObjectInputStream ois;
+	 ObjectOutputStream oos;
+	 Message mess;
+	 
+	 String sender;
+     public ServerReceiverThread(Socket s){//
+    	 this.s=s;
+     }
+     public void run(){
+    	 
+    	 while(true){
+		try {
+			//接受信息
+			ois = new ObjectInputStream(s.getInputStream());
+			mess=(Message)ois.readObject();
+			sender=mess.getSender();
+			System.out.println(mess.getSender()+"对"+mess.getReceiver()+"说"+mess.getContent());
+			
+			if(mess.getMessageType().equals(Message.message_Common)){
+			Socket s1=(Socket)StertServer.hmSocket.get(mess.getReceiver());
+			sendMessage(s1,mess);
+			}
+			
+			//第2步：服务器接受到该请求后发送在线好友信息(类型：mess_OnlineFriend)
+			if(mess.getMessageType().equals(Message.message_RequestOnlineFriend)){
+				Set friendSet=StertServer.hmSocket.keySet();//键集合，在线好友集合
+				
+				Iterator it=friendSet.iterator();//迭代器
+				String friendName;
+				String friendString=" ";
+				while(it.hasNext()){//判断还有没有下一个元素
+					friendName=(String)it.next();//取出下一个元素
+					if(!friendName.equals(mess.getSender()))
+					   friendString=friendName+" "+friendString;
+					
+				}
+				System.out.println("全部好友的名字"+friendString);
+				
+				
+				
+				mess.setContent(friendString);
+				mess.setMessageType(Message.message_OnlineFriend);
+				mess.setSender("Server");
+				mess.setReceiver(sender);
+				
+				sendMessage(s,mess);
+				
+			}
+		} catch (IOException e) {
+		e.printStackTrace();
+			 
+		}
+		catch ( ClassNotFoundException e){
+			e.printStackTrace();
+		}
+    	 
+     }
+     }
+	private void sendMessage(Socket s,Message mess) throws IOException {
+		oos=new ObjectOutputStream(s.getOutputStream());//转发聊天信息
+		 oos.writeObject(mess);
+	}
+}
+	
