@@ -1,0 +1,38 @@
+package com.chatclient.view;
+
+import java.awt.CardLayout;
+import java.awt.*;
+
+import javax.swing.*;
+
+public class Liebiao extends JFrame{
+	CardLayout cardLayout;
+	//第一张卡片
+	JButton wdhy,wdmsr,hmd;
+	JPanel myfriend1;
+	
+	
+	
+	public Liebiao(){
+		wdhy=new JButton("我的好友");
+		this.add(wdhy,"North");
+		myfriend1=new JPanel(new GridLayout(2,1));
+		wdmsr=new JButton("我的抹上人");
+		hmd=new JButton("黑名单");
+		
+		
+		myfriend1.add(wdmsr);myfriend1.add(hmd);
+		this.add(myfriend1,"South");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setSize(300,750);
+		this.setVisible(true);
+		
+	}
+
+	public static void main(String[] args) {
+		Liebiao liebiao=new Liebiao();
+
+	}
+
+}

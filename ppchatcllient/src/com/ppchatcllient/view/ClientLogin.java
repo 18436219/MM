@@ -115,14 +115,18 @@ public class ClientLogin extends JFrame implements ActionListener{//类名：Client
 			user.setUserName(userName);
 			user.setPassName(PassWord);
 			
-			boolean loginSuccess=new ClientConnect().loginValidate(user);
-			if(loginSuccess){
-				FriendList friendList=new FriendList(userName);
+			//boolean loginSuccess=new ClientConnect().loginValidate(user);
+			Message mess=new ClientConnect().loginValidateFromDB(user);
+			//if(loginSuccess){
+			if(mess.getMessageType().equals(Message.message_LoginSuccess)){
+				String friendString=mess.getContent();
+				FriendList friendList=new FriendList(userName,friendString);
 				hmFriendList.put(userName, friendList);
-				Message mess=new Message();
-				mess.setSender(userName);
-				mess.setReceiver("Server");
-				mess.setMessageType(Message.message_RequestOnlineFriend);
+				System.out.println(friendString);
+				Message mess1=new Message();
+				mess1.setSender(userName);
+				mess1.setReceiver("Server");
+				mess1.setMessageType(Message.message_RequestOnlineFriend);
 				Socket s=(Socket)ClientConnect.hmSocket.get(userName);
 				System.out.println("发送"+userName);
 				//System.out.println(s);
@@ -130,7 +134,7 @@ public class ClientLogin extends JFrame implements ActionListener{//类名：Client
 				ObjectOutputStream oos;
 				try {
 					oos=new ObjectOutputStream(s.getOutputStream());
-					oos.writeObject(mess);
+					oos.writeObject(mess1);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}

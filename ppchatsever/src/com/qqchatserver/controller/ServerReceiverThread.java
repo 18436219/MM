@@ -10,7 +10,11 @@ import java.util.Iterator;
 
 
 
+
+
 import javax.swing.JOptionPane;
+
+
 
 
 
@@ -55,18 +59,18 @@ public class ServerReceiverThread extends Thread{
 				while(it.hasNext()){//判断还有没有下一个元素
 					friendName=(String)it.next();//取出下一个元素
 					if(!friendName.equals(mess.getSender()))
-					   friendString=friendName+" "+friendString;
-					
+					   friendString=friendName+" "+friendString;	
 				}
 				System.out.println("全部好友的名字"+friendString);
-				
-				
+				System.out.println(mess.getSender()+"是狗");
+				System.out.println(mess.getSender()+"是混蛋");
+				System.out.println(mess.getSender()+"是吃货");
+
 				
 				mess.setContent(friendString);
 				mess.setMessageType(Message.message_OnlineFriend);
 				mess.setSender("Server");
 				mess.setReceiver(sender);
-				
 				sendMessage(s,mess);
 				
 			}

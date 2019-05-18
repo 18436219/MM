@@ -43,31 +43,49 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 	JPanel moshangrenmianban1;
 	JButton heimingdan1;
 	String userName;
-	public FriendList(String userName){
+	//
+	public FriendList(String userName, String friendString){
 		this.userName=userName;
 		//NO.1被
-		
 		myhaoyou=new JPanel(new BorderLayout());
 		haoyou=new JButton("我的好友");
 		myhaoyou.add(haoyou,"North");
 		//zhong
-	
-
-		myfriendlistJPanel=new JPanel(new GridLayout(FRIEND-1,1));
-		 for(int i=1;i<FRIEND;i++){
-			 myfriendJLabel[i]=new JLabel(i+"",new ImageIcon("images/mm.jpg"),JLabel.LEFT);
-			 myfriendJLabel[i].setEnabled(false);//未激活所有图标
+		
+		
+		String[] friendName=friendString.split(" ");
+		System.out.println("小明是个混蛋");
+		int count=friendName.length;
+		System.out.println(count);
+		myfriendlistJPanel=new JPanel(new GridLayout(count,1));
+		 for(int i=0;i<count;i++){
+			 myfriendJLabel[i]=new JLabel(friendName[i]+"",new ImageIcon("images/mm.jpg"),JLabel.LEFT);
+			 //myfriendJLabel[i].setEnabled(false);//未激活所有图标
 			 //激活自己
 			 /*if(Integer.parseInt(userName)==i)
 				 myfriendJLanel[i].setEnabled(true);*/
 			 myfriendJLabel[i].addMouseListener(this);//鼠标监听器
-			 myfriendlistJPanel.add(myfriendJLabel[i]);
-			 
+			 myfriendlistJPanel.add(myfriendJLabel[i]); 
 		 }
 		//激活自己
 		 //myfriendJLabel[Integer.parseInt(userName)].setEnabled(true);
 		 myfriendJScrollPane=new JScrollPane(myfriendlistJPanel);
 		 myhaoyou.add(myfriendJScrollPane);
+
+		 /*myfriendlistJPanel=new JPanel(new GridLayout(FRIEND-1,1));
+		 for(int i=1;i<FRIEND;i++){
+			 myfriendJLabel[i]=new JLabel(i+"",new ImageIcon("images/mm.jpg"),JLabel.LEFT);
+			myfriendJLabel[i].setEnabled(false);//未激活所有图标
+			 //激活自己
+			 /*if(Integer.parseInt(userName)==i)
+				 myfriendJLanel[i].setEnabled(true);
+			 myfriendJLabel[i].addMouseListener(this);//鼠标监听器
+			 myfriendlistJPanel.add(myfriendJLabel[i]); 
+		 }
+		//激活自己
+		 //myfriendJLabel[Integer.parseInt(userName)].setEnabled(true);
+		 /*myfriendJScrollPane=new JScrollPane(myfriendlistJPanel);
+		 myhaoyou.add(myfriendJScrollPane);*/		
 		//NO.1nan
 		moshangrenmianban=new JPanel(new GridLayout(2,1));
 		moshangren=new JButton("我的陌生人");

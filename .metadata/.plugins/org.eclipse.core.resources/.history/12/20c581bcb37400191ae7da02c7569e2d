@@ -1,0 +1,23 @@
+package com.chatclient.view;
+
+import javax.swing.JFrame;
+
+public class Liebiao extends JFrame{
+	
+	
+	
+	
+	public Liebiao(){
+		
+		
+		
+		this.setVisible(true);
+		
+	}
+
+	public static void main(String[] args) {
+		Liebiao liebiao=new Liebiao();
+
+	}
+
+}

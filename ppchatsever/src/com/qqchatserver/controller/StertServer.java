@@ -79,9 +79,6 @@ public class StertServer {
 				}
 				mess.setContent(friendString);
 				System.out.println(userName+"的relation的数据表好友： "+friendString);
-			 
-			 
-			 
 		 }else{
 			 mess.setMessageType(Message.message_LoginFailure);//0为验证 不通过
 		 }
@@ -104,8 +101,6 @@ public class StertServer {
 				Socket s1=(Socket)hmSocket.get(friendName);
 				sendMessage(s1,mess);
 			}
-			
-			 
 			 hmSocket.put(userName, s);
 			 new ServerReceiverThread(s).start();
 		 }	
@@ -120,7 +115,6 @@ public class StertServer {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} 
-		
 	}
 	private void sendMessage(Socket s,Message mess) throws IOException {
 		ObjectOutputStream oos=new ObjectOutputStream(s.getOutputStream());

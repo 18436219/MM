@@ -1,3 +1,4 @@
+
 package com.ppchatlient.controller;
 
 import java.io.IOException;
@@ -23,8 +24,8 @@ public class ClientConnect {
 			e.printStackTrace();
 		}
 	}
-	public boolean  loginValidate(user user){
-		boolean loginSuccess=false;
+	public Message  loginValidateFromDB(user user){
+		//boolean loginSuccess=false;
 		ObjectOutputStream oos;
 		ObjectInputStream ois;
 		Message mess=null;
@@ -35,7 +36,7 @@ public class ClientConnect {
 		ois=new ObjectInputStream(s.getInputStream());
 		 mess=(Message)ois.readObject();
 		if(mess.getMessageType().equals(Message.message_LoginSuccess)){
-			loginSuccess=true;
+			//loginSuccess=true;
 				System.out.println(user.getUserName()+"µÇÂ½³É¹¦");
 				hmSocket.put(user.getUserName(), s);
 				 new ClientReceiverTiread(s).start();
@@ -45,6 +46,6 @@ public class ClientConnect {
 		
 		e.printStackTrace();
 	}
-	return loginSuccess;
+	return mess;
 	}
 }
