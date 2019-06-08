@@ -25,6 +25,7 @@ import com.yychat.model.Message;
 
 public class ServerReceiverThread extends Thread{
 	 
+
 	Socket s;
 	ObjectInputStream ois;
 	 ObjectOutputStream oos;
@@ -43,6 +44,27 @@ public class ServerReceiverThread extends Thread{
 			mess=(Message)ois.readObject();
 			sender=mess.getSender();
 			System.out.println(mess.getSender()+"对"+mess.getReceiver()+"说"+mess.getContent());
+			if(mess.getMessageType().equals(Message.message_AddFriend)){
+				String addFriendName=mess.getContent();
+				System.out.println(""+addFriendName);
+				if(!YyhatDbUtil.seekUser(addFriendName)){
+					mess.setMessageType(Message.message_AddFriendFailure_NoUser);
+				}else{
+					String relationType="1";//“1”表示好友
+					if(YyhatDbUtil.seekRelation(sender,addFriendName,relationType)){
+						mess.setMessageType(Message.message_AddFriendFailure_AlreadyFriend);
+						
+					}else{
+					int count=YyhatDbUtil.addRelation(sender,addFriendName,relationType);
+						if(count!=0){
+							mess.setMessageType(Message.message_AddFriendSuccess);
+							String allFriendName=YyhatDbUtil.getFriendString(sender);
+							mess.setContent(allFriendName);
+						}
+					}
+				}
+				sendMessage(s,mess);
+			}
 			
 			if(mess.getMessageType().equals(Message.message_Common)){
 			Socket s1=(Socket)StertServer.hmSocket.get(mess.getReceiver());

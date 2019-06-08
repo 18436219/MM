@@ -8,8 +8,9 @@ import java.net.Socket;
 import java.util.HashMap;
 
 
+
 import com.yychat.model.Message;
-import com.yychat.model.user;
+import com.yychat.model.User;
 
 public class ClientConnect {
 	
@@ -24,15 +25,33 @@ public class ClientConnect {
 			e.printStackTrace();
 		}
 	}
-	public Message  loginValidateFromDB(user user){
-		//boolean loginSuccess=false;
+	public boolean registerUserIntoDB(User user){
+		boolean registerSuccess=false;
 		ObjectOutputStream oos;
 		ObjectInputStream ois;
 		Message mess=null;
 	try {
 		oos=new ObjectOutputStream (s.getOutputStream());
 		oos.writeObject(user);
-		
+		ois=new ObjectInputStream(s.getInputStream());
+		 mess=(Message)ois.readObject();
+		if(mess.getMessageType().equals(Message.message_RegisterSuccess)){
+			registerSuccess=true;
+			s.close();
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	return  registerSuccess;
+	}
+	public Message  loginValidateFromDB(User user){
+		//boolean loginSuccess=false;
+		ObjectOutputStream oos;
+		ObjectInputStream ois;
+		Message mess=null;
+	try {
+		oos=new ObjectOutputStream (s.getOutputStream());
+		oos.writeObject(user);	
 		ois=new ObjectInputStream(s.getInputStream());
 		 mess=(Message)ois.readObject();
 		if(mess.getMessageType().equals(Message.message_LoginSuccess)){
@@ -41,9 +60,7 @@ public class ClientConnect {
 				hmSocket.put(user.getUserName(), s);
 				 new ClientReceiverTiread(s).start();
 			}
-		
 	} catch (IOException | ClassNotFoundException e) {
-		
 		e.printStackTrace();
 	}
 	return mess;

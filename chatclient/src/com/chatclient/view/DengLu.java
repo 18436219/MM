@@ -29,7 +29,7 @@ public class DengLu extends JFrame{
 		j1=new JTabbedPane();
 		ja1=new JPanel(new GridLayout(3,3));
 		jb1=new JLabel("YYºÅÂë",JLabel.CENTER);
-		jb2=new JLabel("YºÅÂë");jb3=new JLabel("ºÅÂë");jb4=new JLabel("Âë");
+		jb2=new JLabel("EYºÅÂë",JLabel.CENTER);jb3=new JLabel("ºÅÂë");jb4=new JLabel("Âë");
 		js1=new JButton(new ImageIcon("tupain/clear.gif"));
 		jd1=new JTextField();jf1=new JPasswordField();
 		jh1=new JCheckBox("hugug ");  jh2=new JCheckBox("hiioiohioh ");
@@ -50,7 +50,7 @@ public class DengLu extends JFrame{
 		ji2.add(jk1);ji2.add(jk2);ji2.add(jk3);
 		this.add(ji2,"South");
 		
-		this.setSize(340,350);
+		this.setSize(340,250);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);

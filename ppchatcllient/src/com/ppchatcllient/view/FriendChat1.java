@@ -64,15 +64,12 @@ public class FriendChat1 extends JFrame implements ActionListener{
 			try {
 				Socket s=(Socket)ClientConnect.hmSocket.get(sender);
 				oos = new ObjectOutputStream(ClientConnect.s.getOutputStream());
-				oos.writeObject(mess);
-				
+				oos.writeObject(mess);			
 			} catch (IOException e) {
-				
 				e.printStackTrace();
 			}
 		}	
 	}
-
 public void appendJta(String showMessage){
 	jta.append(showMessage+" \n"+"\r\n");
 }

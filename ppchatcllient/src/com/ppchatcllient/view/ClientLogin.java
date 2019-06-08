@@ -12,7 +12,8 @@ import javax.swing.*;
 
 import com.ppchatlient.controller.ClientConnect;
 import com.yychat.model.Message;
-import com.yychat.model.user;
+import com.yychat.model.User;
+
 
 public class ClientLogin extends JFrame implements ActionListener{//类名：ClientLogin,继承
 
@@ -37,16 +38,10 @@ public class ClientLogin extends JFrame implements ActionListener{//类名：Client
 	JCheckBox jk1,jk2;
 	JTextField jl;
 	JPasswordField jl1;
-	
-	
-
-	
 	//创建北部组件
 	public  ClientLogin(){//构造方法
 		jlbl1=new JLabel(new ImageIcon("images/tou.gif"));//标签对象
 		this.add(jlbl1,"North");//this表示对象本身
-		
-		
 		//创建中部组件
 		jtp1=new JTabbedPane();
 		jp2=new JPanel(new GridLayout(3,3));
@@ -86,13 +81,11 @@ public class ClientLogin extends JFrame implements ActionListener{//类名：Client
 		jb1=new JButton(new ImageIcon("images/denglu.gif"));
 		jb1.addActionListener(this);
 		jb2=new JButton(new ImageIcon("images/zhuce.gif"));
+		jb2.addActionListener(this);
 		jb3=new JButton(new ImageIcon("images/quxiao.gif"));
 		jp1=new JPanel();
 		jp1.add(jb1);jp1.add(jb2);jp1.add(jb3);
 		this.add(jp1,"South");
-		
-		
-		
 		
 		this.setSize(350,240);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//用途？
@@ -107,13 +100,32 @@ public class ClientLogin extends JFrame implements ActionListener{//类名：Client
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==jb2){
+			String userName = jtf1.getText().trim();
+			String PassWord=new String(jpf1.getPassword());
+			//创建user对象
+			User user=new User();//堆箱放在堆内存，引用变量放在内存；
+			user.setUserName(userName);
+			user.setPassName(PassWord);
+			user.setuserMessageType("USER_REGISTER");
+			boolean registerSuccess=new ClientConnect().registerUserIntoDB(user);
+			System.out.println(registerSuccess);
+			if(registerSuccess){
+				JOptionPane.showMessageDialog(this,"注册成功");
+				
+			}else{
+				JOptionPane.showMessageDialog(this,"注册失败");
+			}
+			
+		}
 		if(e.getSource()==jb1) {
 			String userName = jtf1.getText().trim();
 			String PassWord=new String(jpf1.getPassword());
 			//创建user对象
-			user user=new user();//堆箱放在堆内存，引用变量放在内存；
+			User user=new User();//堆箱放在堆内存，引用变量放在内存；
 			user.setUserName(userName);
 			user.setPassName(PassWord);
+			user.setuserMessageType("UESR_LOGIN");
 			
 			//boolean loginSuccess=new ClientConnect().loginValidate(user);
 			Message mess=new ClientConnect().loginValidateFromDB(user);
